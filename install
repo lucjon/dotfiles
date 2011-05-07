@@ -20,3 +20,4 @@ move_if_exists ~/.vim
 ln -sv "$PWD/vim" ~/.vim
 ln -sv "$PWD/vimrc" ~/.vimrc
 ln -sv "$PWD/bashrc" ~/.bashrc
+ln -sv "$PWD" ~/.dotfiles_dir

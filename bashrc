@@ -116,7 +116,7 @@ echo \n
 			bzr add .
 			bzr commit
 		else
-			echo "commit: did not find supported (hg,git,bzr) VCS in $PWD"
+			echo "commit: did not find supported (hg, git, bzr) VCS in $PWD"
 		fi
 	}
 
@@ -127,6 +127,13 @@ echo \n
 		else
 			echo "fail ($?)"
 		fi
+	}
+
+	function update_dotfiles {
+		pushd
+		cd ~/.dotfiles_dir
+		git update
+		popd
 	}
 
 ### Aliases
