@@ -64,6 +64,12 @@ echo \n
 		MB_TITLE="$USER@`hostname` -> `pwd`"
 		# xterm
 		echo -ne "\e]2;$MB_TITLE\007"
+
+		# check for updates
+		if [ -f ~/.dotfiles_updated ]; then
+			echo -e "\e[1m(!) Updated dotfiles. You might want to restart bash.\e[0m"
+			rm ~/.dotfiles_updated
+		fi
 	}
 
 # Prompt extended info function (ie, git repos ...)
@@ -130,10 +136,18 @@ echo \n
 	}
 
 	function update_dotfiles {
-		pushd
+		pushd .
 		cd ~/.dotfiles_dir
-		git update
-		./install
+
+		OLD_HASH=`git log -1 "--pretty=format:%H" 2> /dev/null`
+		git pull -q &> /dev/null
+		NEW_HASH=`git log -1 "--pretty=format:%H" 2> /dev/null`
+
+		if [ "$OLD_HASH" != "$NEW_HASH" ]; then
+			touch ~/.dotfiles_updated
+			./install
+		fi
+
 		popd
 	}
 
@@ -145,3 +159,5 @@ echo \n
 	export DEVKITPPC="$DEVKITPRO/devkitPPC"
 	PATH="$PATH:$DEVKITPPC/bin"
 
+### Check for updates
+	update_dotfiles &
