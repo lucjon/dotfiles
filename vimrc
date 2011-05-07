@@ -8,7 +8,7 @@ set autoindent smartindent 						" Autoindent
 set tabstop=4 shiftwidth=4						" 4-tabs
 set showmatch mat=2								" Switch briefly to opposite (/[/etc for 0.2 sec
 set ruler										" Show cursor pos.
-set visualbell 									" Visual bell
+set novisualbell 								" Visual bell looks ugly on GUI
 set guioptions=ac t_Co=256						" Minimal GUI, 256 colour
 set showcmd										" Some more info in bottom-right corner
 set wildmenu wildmode=list:longest,full			" Tab-completion at :
@@ -61,6 +61,10 @@ cabbr <expr> %% expand('%:p:h')
 
 " Toggle hls
 nmap <C-K>  :set hlsearch!<CR>:set hlsearch?<CR>
+
+" Open a shell
+nmap <leader>bash	:ConqueTermVSplit bash<CR>
+nmap <leader>py		:ConqueTermVSplit python<CR><Esc>:set syntax=python<CR>i
 
 " Press F2 to save quickly in insert mode
 imap <F2>	<Esc>:w!<CR>i
