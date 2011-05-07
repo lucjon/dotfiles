@@ -133,6 +133,7 @@ echo \n
 		pushd
 		cd ~/.dotfiles_dir
 		git update
+		./install
 		popd
 	}
 
