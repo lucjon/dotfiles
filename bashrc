@@ -153,6 +153,7 @@ echo \n
 
 ### Aliases
 	alias gpush="git push origin master"
+	alias ..="cd ..; pwd"
 
 ### Environment
 	export DEVKITPRO="/opt/devkitpro"
