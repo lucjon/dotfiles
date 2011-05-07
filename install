@@ -1,0 +1,22 @@
+#!/bin/bash
+BACKUP=./backup
+
+mkdir -pv "$BACKUP"
+touch "$BACKUP/remember_dotfiles_are_hidden"
+
+function move_if_exists {
+	if [ -f "$1" ] || [ -d "$1" ]; then
+		if ! mv -v "$1" "$BACKUP"; then
+			echo "Failed to back up $1"
+			exit 1
+		fi
+	fi
+}
+
+move_if_exists ~/.vimrc
+move_if_exists ~/.bashrc
+move_if_exists ~/.vim
+
+ln -sv "$PWD/vim" ~/.vim
+ln -sv "$PWD/vimrc" ~/.vimrc
+ln -sv "$PWD/bashrc" ~/.bashrc
