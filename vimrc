@@ -24,6 +24,7 @@ set number										" Line numbers
 set wrap linebreak textwidth=0					" Default wrapping is weird...
 set backspace=indent,eol,start					" Fix broken backspace
 set cursorline									" Highlight current line
+let g:ConqueTerm_Color = 1						" Enable terminal colour
 
 " In visual mode when you press * or # to search for the current selection
 vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -133,3 +134,17 @@ endfunction
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 colors vibrantink
+
+if has("gui_running")
+	set guifont=Monaco\ 9
+endif
+
+" SSH
+let g:ssh_opts = "-i/home/lucas/MainKey.pem"
+
+function! OpenSSH(host)
+	let cmd = "ssh " . g:ssh_opts . " " . a:host
+	call conque_term#open(cmd, ['vsplit'])
+endfunction
+
+command! -nargs=1 SSH call OpenSSH("<args>")
