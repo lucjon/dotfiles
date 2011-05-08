@@ -148,5 +148,11 @@ function! OpenSSH(host)
 	call conque_term#open(cmd, ['vsplit'])
 endfunction
 
+function! CopyBufToClipboard()
+	" such a hack; oh well
+	%!xsel -bio
+	undo
+endfunction
+
 command! -nargs=1 SSH call OpenSSH("<args>")
-command! -nargs=0 BufToClipboard %!xsel -bio
+command! -nargs=0 BufToClipboard call CopyBufToClipboard()

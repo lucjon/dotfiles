@@ -133,7 +133,7 @@ fi
 	}
 
 	function update_dotfiles {
-		pushd .
+		pushd . &> /dev/null
 		cd ~/.dotfiles_dir
 
 		OLD_HASH=`git log -1 "--pretty=format:%H" 2> /dev/null`
@@ -145,7 +145,7 @@ fi
 			./install
 		fi
 
-		popd
+		popd &> /dev/null
 	}
 
 ### Aliases
