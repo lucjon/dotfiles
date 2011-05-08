@@ -1,0 +1,6 @@
+" This plugin defines three commands:
+"
+" 	ColorHighlight	- start/update highlighting
+" 	ColorClear      - clear all highlights
+" 	ColorToggle     - toggle highlights
+
