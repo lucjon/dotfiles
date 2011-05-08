@@ -10,3 +10,6 @@
 [submodule "vim/bundle/molly.vim"]
 	path = vim/bundle/molly.vim
 	url = https://github.com/westoque/molly.vim
+[submodule "vim/bundle/minibufexpl.vim"]
+	path = vim/bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim

@@ -145,6 +145,9 @@ colors ir_black
 
 if has("gui_running")
 	set guifont=Monaco\ 9
+
+	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
+	noremap  <C-Z>	<Esc>
 endif
 
 " SSH
