@@ -24,6 +24,7 @@ set number										" Line numbers
 set wrap linebreak textwidth=0					" Default wrapping is weird...
 set backspace=indent,eol,start					" Fix broken backspace
 set cursorline									" Highlight current line
+set clipboard+=unnamed							" Yank to clipboard by default.
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 
 " In visual mode when you press * or # to search for the current selection
@@ -133,7 +134,7 @@ function! HasPaste()
 endfunction
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
-colors vibrantink
+colors ir_black
 
 if has("gui_running")
 	set guifont=Monaco\ 9
@@ -148,3 +149,4 @@ function! OpenSSH(host)
 endfunction
 
 command! -nargs=1 SSH call OpenSSH("<args>")
+command! -nargs=0 BufToClipboard %!xsel -bio

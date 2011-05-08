@@ -2,94 +2,91 @@
 ## My bashrc extensions
 ## Assumes console width of 79
 
-###### Little bits of config
-MB_VCS_EDITOR_NANO=yes
-######
+if [ "$NO_FUNKY_DISPLAY" != "yes" ] && ! [ -f ~/.no_funny_business ]; then
+	###### Little bits of config
+	MB_VCS_EDITOR_NANO=yes
+	######
 
-clear
-echo \n
+	clear
+	echo \n
 
-### PS1
-# Header row init
-	# Move to top, print 160 spaces, move to top again
-	MB_HEADER_IN="\[\e[s\e[2;0H\]"
-# Header row formatting
-	MB_HEADER_FM="\[\e[1;7m\]"
-# Header row 1 content
-	MB_HEADER_R1=""
+	### PS1
+	# Header row init
+		# Move to top, print 160 spaces, move to top again
+		MB_HEADER_IN="\[\e[s\e[2;0H\]"
+	# Header row formatting
+		MB_HEADER_FM="\[\e[1;7m\]"
+	# Header row 1 content
+		MB_HEADER_R1=""
 
-	# prints spaces to avoid a strange occurence I've found in every
-	# terminal I've used: if you don't fill the terminal in at least
-	# one of the header rows, text won't go past the furthest point,
-	# and will just go back to col 0.
+		for x in {0..79}; do
+			MB_HEADER_R1="${MB_HEADER_R1} "
+		done
+		MB_HEADER_R1="${MB_HEADER_R1}\[\e[2;0H\]\d,  \u@\H -> \[\e[44m\]\w\[\e[40m\]"
+	# Header row 2 content
+		MB_HEADER_R2=""
+		for x in {0..79}; do
+			MB_HEADER_R2="$MB_HEADER_R2 "
+		done
+		MB_HEADER_R2="${MB_HEADER_R2}\r\`uptime | cut -d, -f1\`  \`mb_r2_ex\`"
+	# Header row deinit
+		MB_HEADER_EN="\[\e[0m\e[u\]"
+	# Header row
+		MB_HEADER="${MB_HEADER_IN}${MB_HEADER_FM}${MB_HEADER_R1}\n${MB_HEADER_R2}${MB_HEADER_EN}\n"
 
-	for x in {0..79}; do
-		MB_HEADER_R1="${MB_HEADER_R1} "
-	done
-	MB_HEADER_R1="${MB_HEADER_R1}\[\e[2;0H\]\d,  \u@\H -> \[\e[44m\]\w\[\e[40m\]"
-# Header row 2 content
-	MB_HEADER_R2=""
-	for x in {0..79}; do
-		MB_HEADER_R2="$MB_HEADER_R2 "
-	done
-	MB_HEADER_R2="${MB_HEADER_R2}\r\`uptime | cut -d, -f1\`  \`mb_r2_ex\`"
-# Header row deinit
-	MB_HEADER_EN="\[\e[0m\e[u\]"
-# Header row
-	MB_HEADER="${MB_HEADER_IN}${MB_HEADER_FM}${MB_HEADER_R1}\n${MB_HEADER_R2}${MB_HEADER_EN}\n"
+	# Prompt formatting
+		MB_PROMPT_FM="\[\e[1;33m\]"
+	# Prompt contents
+		MB_PROMPT_DT="\#/\!> "
+	# Prompt deinit
+		MB_PROMPT_EN="\[\e[0m\]"
+	# Prompt
+		MB_PROMPT="${MB_PROMPT_FM}\`mb_prompt_ex\`${MB_PROMPT_DT}${MB_PROMPT_EN}"
 
-# Prompt formatting
-	MB_PROMPT_FM="\[\e[1;33m\]"
-# Prompt contents
-	MB_PROMPT_DT="\#/\!> "
-# Prompt deinit
-	MB_PROMPT_EN="\[\e[0m\]"
-# Prompt
-	MB_PROMPT="${MB_PROMPT_FM}\`mb_prompt_ex\`${MB_PROMPT_DT}${MB_PROMPT_EN}"
+	# Clear hack for header row
+		function clear {
+			echo -ne "\e[2J\e[3;0H"
+		}
 
-# Clear hack for header row
-	function clear {
-		echo -ne "\e[2J\e[3;0H"
-	}
+	# PS1
+		PS1="${MB_HEADER}${MB_PROMPT}"
+		echo -ne "\e[s\e[0;0H(ok. shell: bash $BASH_VERSION); `fortune -s -n 45`\e[3;0H\e[u"
+	# PROMPT_COMMAND
+		PROMPT_COMMAND=mb_pcmd_ex
 
-# PS1
-	PS1="${MB_HEADER}${MB_PROMPT}"
-	echo -ne "\e[s\e[0;0H(ok. shell: bash $BASH_VERSION); `fortune -s -n 45`\e[3;0H\e[u"
-# PROMPT_COMMAND
-	PROMPT_COMMAND=mb_pcmd_ex
+	# Prompt command
+		function mb_pcmd_ex {
+			# set xterm, etc. titles
+			MB_TITLE="$USER@`hostname` -> `pwd`"
+			# xterm
+			echo -ne "\e]2;$MB_TITLE\007"
 
-# Prompt command
-	function mb_pcmd_ex {
-		# set xterm, etc. titles
-		MB_TITLE="$USER@`hostname` -> `pwd`"
-		# xterm
-		echo -ne "\e]2;$MB_TITLE\007"
+			# check for updates
+			if [ -f ~/.dotfiles_updated ]; then
+				echo -e "\e[1m(!) Updated dotfiles. You might want to restart bash.\e[0m"
+				rm ~/.dotfiles_updated
+			fi
+		}
 
-		# check for updates
-		if [ -f ~/.dotfiles_updated ]; then
-			echo -e "\e[1m(!) Updated dotfiles. You might want to restart bash.\e[0m"
-			rm ~/.dotfiles_updated
-		fi
-	}
-
-# Prompt extended info function (ie, git repos ...)
-	function mb_prompt_ex {
-		# maybe a git repo?
-		if [ -d ".git" ]; then
-			echo -ne "(git:`git branch | head -n 1 | cut '-d ' -f2 2> /dev/null`/`git log -1 --pretty=format:%h 2> /dev/null`) "
-		fi
-		# how about mercurial
-		if [ -d ".hg" ]; then
-			echo -ne "(hg:`hg branch`) "
-		fi
-	}
-# Header row 2 extended info
-	function mb_r2_ex {
-		# git status
-		if [ -d ".git" ]; then
-			echo -n " [git: " `git log -1 "--pretty=format:%s, %ar" 2> /dev/null | cut -c1-45`...
-		fi
-	}
+	# Prompt extended info function (ie, git repos ...)
+		function mb_prompt_ex {
+			# maybe a git repo?
+			if [ -d ".git" ]; then
+				echo -ne "(git:`git branch | head -n 1 | cut '-d ' -f2 2> /dev/null`/`git log -1 --pretty=format:%h 2> /dev/null`) "
+			fi
+			# how about mercurial
+			if [ -d ".hg" ]; then
+				echo -ne "(hg:`hg branch`) "
+			fi
+		}
+	# Header row 2 extended info
+		function mb_r2_ex {
+			# git status
+			if [ -d ".git" ]; then
+				echo -n " [git: " `git log -1 "--pretty=format:%s, %ar" 2> /dev/null | cut -c1-45`...
+			fi
+		}
+fi
 
 ### Console Font Setup
 	# Ignore errors (ie, on a ptty)
