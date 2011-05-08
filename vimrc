@@ -1,5 +1,12 @@
 " .vimrc
 
+" Load Pathogen
+filetype off
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
+" Contine with option setting
+
 set timeoutlen=500								" Shift+O isn't quite so slow, but keep it reasonably long so leader works
 set mouse=a										" Enable console mouse support
 set nocp 										" Disable vi compatibility
