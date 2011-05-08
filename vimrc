@@ -32,6 +32,7 @@ set wrap linebreak textwidth=0					" Default wrapping is weird...
 set backspace=indent,eol,start					" Fix broken backspace
 set cursorline									" Highlight current line
 set clipboard+=unnamed							" Yank to clipboard by default.
+set ofu=syntaxcomplete#Complete					" Enable omni-completion
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 
 " In visual mode when you press * or # to search for the current selection
@@ -166,3 +167,4 @@ endfunction
 
 command! -nargs=1 SSH call OpenSSH("<args>")
 command! -nargs=0 BufToClipboard call CopyBufToClipboard()
+command! -nargs=0 EdVimrc ed ~/.vimrc
