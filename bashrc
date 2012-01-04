@@ -1,4 +1,7 @@
 #!/bin/bash
+#MAGIC_DOTFILES_BASHRC
+# ^-- used by the install script; don't remove
+
 ## My bashrc extensions
 ## Assumes console width of 79
 
@@ -148,14 +151,40 @@ fi
 		popd &> /dev/null
 	}
 
+	function aod {
+		CMD=`history | tail -n 2 | head -n 1 | sed -e 's/^[0-9 ]* //'`
+		alias $1=$CMD
+	}
+
+	function keepalias {
+		CMD=`alias $1 | cut -d= -f2-`
+		echo "alias $1='$CMD'" >> ~/.dotfiles_dir/user-aliases
+	}
+
 ### Aliases
 	alias gpush="git push origin master"
 	alias ..="cd ..; pwd"
+	alias l="ls --color -F"
+	alias ll="ls --color -Fl"
+	alias la="ls --color -Fa"
+	alias lla="ls --color -Fla"
+	# vim seems to get a bit borked when called as vi
+	alias vi=vim
+
+	# load user aliases
+	source ~/.dotfiles_dir/
+
 
 ### Environment
 	export DEVKITPRO="/opt/devkitpro"
 	export DEVKITPPC="$DEVKITPRO/devkitPPC"
 	PATH="$PATH:$DEVKITPPC/bin"
+
+	if [ "$EDITOR" == "vi" ]; then
+		export EDITOR=vim
+	fi
+
+	set -o vi
 
 ### Check for updates
 	update_dotfiles &
