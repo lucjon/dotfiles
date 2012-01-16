@@ -4,8 +4,14 @@
 
 ## My bashrc extensions
 ## Assumes console width of 79
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	ON_SSH=yes
+else
+	ON_SSH=no
+fi
 
-if [ "$NO_FUNKY_DISPLAY" != "yes" ] && ! [ -f ~/.no_funny_business ]; then
+
+if [ "$NO_FUNKY_DISPLAY" != "yes" ] && ! [ -f ~/.no_funny_business ] || [ "$ON_SSH" == "yes" ]; then
 	###### Little bits of config
 	MB_VCS_EDITOR_NANO=yes
 	######
@@ -178,7 +184,7 @@ fi
 ### Environment
 	export DEVKITPRO="/opt/devkitpro"
 	export DEVKITPPC="$DEVKITPRO/devkitPPC"
-	PATH="$PATH:$DEVKITPPC/bin"
+	export PATH="$PATH:$DEVKITPPC/bin:$HOME/bin:$HOME/.local/bin"
 
 	if [ "$EDITOR" == "vi" ]; then
 		export EDITOR=vim
