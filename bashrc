@@ -178,7 +178,7 @@ fi
 	alias vi=vim
 
 	# load user aliases
-	source ~/.dotfiles_dir/
+	source ~/.dotfiles_dir/user-aliases
 
 
 ### Environment
