@@ -68,7 +68,7 @@ if [ "$NO_FUNKY_DISPLAY" != "yes" ] && ! [ -f ~/.no_funny_business ] || [ "$ON_S
 			# set xterm, etc. titles
 			MB_TITLE="$USER@`hostname` -> `pwd`"
 			# xterm
-			echo -ne "\e]2;$MB_TITLE\007"
+			#echo -ne "\e]2;$MB_TITLE\007"
 
 			# check for updates
 			if [ -f ~/.dotfiles_updated ]; then
@@ -99,7 +99,9 @@ fi
 
 ### Console Font Setup
 	# Ignore errors (ie, on a ptty)
-	consolechars -f Lat15-Terminus14 2> /dev/null
+	if which consolechars &> /dev/null; then
+		consolechars -f Lat15-Terminus14 2> /dev/null
+	fi
 
 ### VCS Functions
 	function mb_ingit {
