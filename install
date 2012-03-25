@@ -31,3 +31,4 @@ if ! [ -f user-alises ]; then
 	touch user-alises
 fi
 
+sudo limp/install.sh

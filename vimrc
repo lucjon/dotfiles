@@ -94,7 +94,7 @@ nmap <leader>q  :call MakeVimQuiet()<CR>
 
 " Buffer switch quickly
 nnoremap <F1>	:bp<CR>
-nnoremap <F12>	:bn<CR>
+nnoremap <F11>	:bn<CR>
 nnoremap <F2>  <C-W>w
 nnoremap <F10>  <C-W>W
 " Re-indent whole file
@@ -145,7 +145,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ 
 colors ir_black
 
 if has("gui_running")
-	set guifont=Monaco\ 9
+	colors solarized
+	set guifont=ProFont\ 9 bg=light
 
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
