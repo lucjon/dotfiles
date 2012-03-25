@@ -166,7 +166,7 @@ fi
 
 	function keepalias {
 		CMD=`alias $1 | cut -d= -f2-`
-		echo "alias $1='$CMD'" >> ~/.dotfiles_dir/user-aliases
+		echo "alias $1=$CMD" >> ~/.dotfiles_dir/user-aliases
 	}
 
 ### Aliases
@@ -180,7 +180,7 @@ fi
 	alias vi=vim
 
 	# load user aliases
-	source ~/.dotfiles_dir/
+	source ~/.dotfiles_dir/user-aliases
 
 
 ### Environment
