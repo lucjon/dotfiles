@@ -9,13 +9,13 @@ use File::Temp qw/ tempfile tempdir /;
 $BASE = "/usr/share/doc/hyperspec";
 
 #####################################################################
-# Opera -- works
+# LJ: Use default browser
 
 # the name of your browser -- must be in your $PATH
-$browser_name = "opera";
+$browser_name = "xdg-open";
 
 # Arguments for your browser.  %s replaced with URL
-@browser_args = ("-remote", "openURL(file://localhost%s,new-page)");
+@browser_args = ("file://%s");
 
 # Does your browser open a window of its own?  1 for yes, 0 for no
 $external = 1;
