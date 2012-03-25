@@ -5,7 +5,7 @@ mkdir -pv "$BACKUP"
 touch "$BACKUP/remember_dotfiles_are_hidden"
 
 function move_if_exists {
-	if [ -f "$1" ] || [ -d "$1" ]; then
+	if [ -e "$1" ] || [ -d "$1" ]; then
 		if ! mv -v "$1" "$BACKUP"; then
 			echo "Failed to back up $1"
 			exit 1
@@ -19,6 +19,8 @@ move_if_exists ~/.vim
 move_if_exists ~/.inputrc
 move_if_exists ~/.gdbinit
 move_if_exists ~/.nethackrc
+move_if_exists ~/.gtkrc-2.0-kde4
+move_if_exists ~/.dotfiles_dir
 
 ln -sv "$PWD/vim" ~/.vim
 ln -sv "$PWD/vimrc" ~/.vimrc
@@ -26,13 +28,15 @@ ln -sv "$PWD/bashrc" ~/.bashrc
 ln -sv "$PWD/inputrc" ~/.inputrc
 ln -sv "$PWD/gdbinit" ~/.gdbinit
 ln -sv "$PWD/nethackrc" ~/.nethackrc
+ln -sv "/dev/null" ~/.gtkrc-2.0-kde4
 ln -sv "$PWD" ~/.dotfiles_dir
 
-if ! [ -f user-alises ]; then
-	touch user-alises
+if ! [ -f user-aliases ]; then
+	touch user-aliases
 fi
 
 if ! [ -d HyperSpec ]; then
 	./get-hyperspec
 fi
+
 limp/install.sh
