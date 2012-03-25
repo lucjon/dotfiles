@@ -18,6 +18,7 @@ move_if_exists ~/.bashrc
 move_if_exists ~/.vim
 move_if_exists ~/.inputrc
 move_if_exists ~/.gdbinit
+move_if_exists ~/.nethackrc
 
 ln -sv "$PWD/vim" ~/.vim
 ln -sv "$PWD/vimrc" ~/.vimrc
@@ -31,4 +32,7 @@ if ! [ -f user-alises ]; then
 	touch user-alises
 fi
 
-sudo limp/install.sh
+if ! [ -d HyperSpec ]; then
+	./get-hyperspec
+fi
+limp/install.sh

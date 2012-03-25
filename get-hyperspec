@@ -1,6 +1,7 @@
 #!/bin/bash
 # Run this from the dotfiles directory
 curl "ftp://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-7-0.tar.gz" | tar -zxf -
+echo
 rm -f HyperSpec-*.text
 
 echo "** symlinking -> /usr/share/doc/hyperspec"

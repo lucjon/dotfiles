@@ -5,6 +5,9 @@ VERSION=0.3.4
 BASE=/usr/local/limp
 LISP_FTP=$HOME/.vim/ftplugin/lisp
 
+if [ -d limp ]; then
+	cd limp
+fi
 
 if [[ ! -d "$BASE" ]]; then
     sudo mkdir -p $BASE
