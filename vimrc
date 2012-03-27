@@ -118,7 +118,7 @@ else
 endif
 
 " Bind Gundo
-nmap <C-S-Z> :GundoToggle<CR>
+nmap <C-S-Y> :GundoToggle<CR>
 
 " Make moving around windows easier
 map <c-j> <c-w>j
@@ -127,3 +127,7 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 command! -nargs=0 EdVimrc ed ~/.vimrc
+
+" Load some plugins automatically
+autocmd vimenter * Tlist
+autocmd vimenter * NERDTree

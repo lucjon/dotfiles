@@ -1,0 +1,18 @@
+#!/bin/bash
+! [ -d fonts ] && mkdir fonts
+cd fonts
+
+mv -rfv ~/.fonts/* .
+if [ -d ~/.fonts ] && ! rmdir ~/.fonts; then
+	echo "(!) Could not get all your fonts moved across from ~/.fonts."
+	echo "    Move them manually to $PWD and symlink."
+else
+	ln -sv "$PWD" ~/.fonts
+fi
+
+wget 'http://www.gringod.com/wp-upload/MONACO.TTF'
+wget 'http://www.tobiasjung.net/download.php?file=ProFontWinTweaked.zip' -O profont.zip
+unzip profont.zip
+rm profont.zip
+
+cd ..
