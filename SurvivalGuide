@@ -1,0 +1,29 @@
+          LUCJON/DOTFILES
+   VIM KEYBINDINGS SURVIVAL GUIDE
+------------------+-------------------+
+<C-K>   Clear hls  ,in   Re-indent file
+<Tab>   SuperTab   ,em   Empty file
+<C-S-Y> Gundo      ,py   Open Py shell
+,bash   Conque sh  ,rm   Right margin
+<C-P>   Paste mode <F2>  [ins] Save
+<F10>   Next win   <F9>  Source %
+,c<Spc> Togle cmnt ,cu   Uncomment
+,mbt    Tgl bufexp ,cc   Comment
+,Tab    Algn tabs  ,t=   Align =s
+,tc     Colorizer  ,s    Show whitspace
+<F12>   Limp lis'n ,x    Molly
+<C-h>/<C-j>/<C-k>/<C-l>  Change windows
+<F1>/<F11>               Change buffers
+:set spell! spelllang=   Spellchecker
+<C-]>                  Go to definition
+~    Toggle case  g;/g, Back/fwd change
+
+ALIGN 	 :Align {CHR}    Aligns by CHR
+FUGITIVE :Git {CMD}      Run git cmd
+         :Gcommit        Commit
+GITV     :Gitv           Browse repo
+GUNDO    :Gundo          Open undo tree
+NERDTREE :NERDTree       File explorer
+TAGLIST  :Tlist          Identifiers
+-------  :EdVimrc        Edit vimrc
+         :SurvivalGuide  Open this doc

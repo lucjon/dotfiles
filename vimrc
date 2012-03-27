@@ -127,6 +127,7 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 command! -nargs=0 EdVimrc ed ~/.vimrc
+command! -nargs=0 SurvivalGuide vs ~/.dotfiles_dir/SurvivalGuide
 
 " Load some plugins automatically
 autocmd vimenter * Tlist
