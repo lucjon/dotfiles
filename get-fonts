@@ -2,17 +2,24 @@
 ! [ -d fonts ] && mkdir fonts
 cd fonts
 
-mv -rfv ~/.fonts/* .
-if [ -d ~/.fonts ] && ! rmdir ~/.fonts; then
-	echo "(!) Could not get all your fonts moved across from ~/.fonts."
-	echo "    Move them manually to $PWD and symlink."
+if [ "$(readlink -f ~/.fonts)" == "$(readlink -f .)" ]; then
+	echo "(i) This is not a first-time install."
 else
-	ln -sv "$PWD" ~/.fonts
+	mv -fv ~/.fonts/* .
+
+	if [ -d ~/.fonts ] && ! rmdir ~/.fonts; then
+		echo "(!) Could not get all your fonts moved across from ~/.fonts."
+		echo "    Move them manually to $PWD and symlink."
+	else
+		ln -sv "$PWD" ~/.fonts
+	fi
 fi
 
-wget 'http://www.gringod.com/wp-upload/MONACO.TTF'
+[ -f MONACO.TTF ] || wget 'http://www.gringod.com/wp-upload/MONACO.TTF'
+
 wget 'http://www.tobiasjung.net/download.php?file=ProFontWinTweaked.zip' -O profont.zip
 unzip profont.zip
 rm profont.zip
 
 cd ..
+fc-cache -rv ~/.fonts
