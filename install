@@ -39,4 +39,5 @@ if ! [ -d HyperSpec ]; then
 	./get-hyperspec
 fi
 
+./get-fonts
 limp/install.sh
