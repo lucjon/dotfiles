@@ -8,7 +8,7 @@
 
 # full path to location of the SBCL binary and its default core.
 # default is to guess the correct location, which usually gets it right.
-SBCL=
+SBCL=/usr/bin/clisp
 SBCL_CORE=
 
 # ----------------------------

@@ -129,7 +129,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 
 " Make status bar nicer
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/lucas/', "~/", "g")
     return curdir
 endfunction
 
@@ -140,7 +140,7 @@ function! HasPaste()
         return ''
     endif
 endfunction
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \|\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 colors ir_black
 
@@ -151,6 +151,9 @@ if has("gui_running")
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
 endif
+
+" Bind Gundo
+nmap <C-S-Z> :GundoToggle<CR>
 
 " SSH
 let g:ssh_opts = "-i/home/lucas/MainKey.pem"
