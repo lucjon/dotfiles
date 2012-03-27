@@ -126,8 +126,14 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+function! DoPCRE(expr)
+	let s = 'perldo s' . a:expr
+	execute s
+endfunction
+
 command! -nargs=0 EdVimrc ed ~/.vimrc
 command! -nargs=0 SurvivalGuide vs ~/.dotfiles_dir/SurvivalGuide
+command! -nargs=* S call DoPCRE('<args>')
 
 " Load some plugins automatically
 autocmd vimenter * Tlist

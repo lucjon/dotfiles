@@ -27,3 +27,4 @@ NERDTREE :NERDTree       File explorer
 TAGLIST  :Tlist          Identifiers
 -------  :EdVimrc        Edit vimrc
          :SurvivalGuide  Open this doc
+		 :S /srch/repl/  PCRE Subst
