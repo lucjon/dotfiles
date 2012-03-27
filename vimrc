@@ -35,34 +35,6 @@ set clipboard+=unnamed							" Yank to clipboard by default.
 set ofu=syntaxcomplete#Complete					" Enable omni-completion
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 
-" In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-" From an idea by Michael Naumann
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
 " Set leader right
 let mapleader = ","
 
@@ -82,15 +54,6 @@ imap <F2>	<Esc>:w!<CR>i
 " Source VimL in buffer
 nmap <F9>  <Esc>:so %<CR>
 map <C-P>	:set paste!<CR>:set paste?<CR>
-
-" 'Quiet' mode
-function! MakeVimQuiet()
-	set laststatus=0
-	set nonumber
-	set nolist
-	set cc=0
-endfunction
-nmap <leader>q  :call MakeVimQuiet()<CR>
 
 " Buffer switch quickly
 nnoremap <F1>	:bp<CR>
@@ -140,35 +103,27 @@ function! HasPaste()
         return ''
     endif
 endfunction
+
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \|\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
-colors ir_black
-
+" Appearance options
 if has("gui_running")
 	colors solarized
 	set guifont=ProFont\ 9 bg=light
 
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
+else
+	colors darkblue
 endif
 
 " Bind Gundo
 nmap <C-S-Z> :GundoToggle<CR>
 
-" SSH
-let g:ssh_opts = "-i/home/lucas/MainKey.pem"
+" Make moving around windows easier
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 
-function! OpenSSH(host)
-	let cmd = "ssh " . g:ssh_opts . " " . a:host
-	call conque_term#open(cmd, ['vsplit'])
-endfunction
-
-function! CopyBufToClipboard()
-	" such a hack; oh well
-	%!xsel -bio
-	undo
-endfunction
-
-command! -nargs=1 SSH call OpenSSH("<args>")
-command! -nargs=0 BufToClipboard call CopyBufToClipboard()
 command! -nargs=0 EdVimrc ed ~/.vimrc
