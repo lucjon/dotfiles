@@ -136,5 +136,13 @@ command! -nargs=0 SurvivalGuide vs ~/.dotfiles_dir/SurvivalGuide
 command! -nargs=* S call DoPCRE('<args>')
 
 " Load some plugins automatically
-autocmd vimenter * Tlist
-autocmd vimenter * NERDTree
+function! SetupProgramming()
+	TlistOpen
+	NERDTree
+	syntax on
+	filetype on
+	filetype plugin on
+	filetype indent on
+endfunction
+
+autocmd filetype lisp,python,javascript,ruby,perl,c,bash,sh,asm,java,vim call SetupProgramming()
