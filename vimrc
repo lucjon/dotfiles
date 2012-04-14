@@ -145,4 +145,7 @@ function! SetupProgramming()
 	filetype indent on
 endfunction
 
-autocmd filetype lisp,python,javascript,ruby,perl,c,bash,sh,asm,java,vim call SetupProgramming()
+augroup rccmd
+	autocmd!
+	autocmd filetype lisp,python,javascript,ruby,perl,c,bash,sh,asm,java,vim call SetupProgramming()
+augroup END

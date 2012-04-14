@@ -12,10 +12,10 @@
 ,Tab    Algn tabs  ,t=   Align =s
 ,tc     Colorizer  ,s    Show whitspace
 <F12>   Limp lis'n ,x    Molly
+<C-]>   Goto def'n ,t    Tasks eg. TODO
 <C-h>/<C-j>/<C-k>/<C-l>  Change windows
 <F1>/<F11>               Change buffers
 :set spell! spelllang=   Spellchecker
-<C-]>                  Go to definition
 ~    Toggle case  g;/g, Back/fwd change
 
 ALIGN 	 :Align {CHR}    Aligns by CHR
