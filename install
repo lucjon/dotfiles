@@ -6,12 +6,21 @@ touch "$BACKUP/remember_dotfiles_are_hidden"
 
 function move_if_exists {
 	if [ -e "$1" ] || [ -d "$1" ]; then
-		if ! mv -v "$1" "$BACKUP"; then
+		if [ -L "$1" ] && echo -n "$1" | grep -F "$PWD"; then
+			echo "(skipping already-installed $1)"
+		elif ! mv -v "$1" "$BACKUP"; then
 			echo "Failed to back up $1"
 			exit 1
 		fi
 	fi
 }
+
+# first-time install tasks
+if ! [ -d ~/.dotfiles_dir/ ]; then
+	echo 'First-time install! Great'
+	./get-fonts
+	limp/install.sh
+fi
 
 move_if_exists ~/.vimrc
 move_if_exists ~/.bashrc
@@ -20,6 +29,7 @@ move_if_exists ~/.inputrc
 move_if_exists ~/.gdbinit
 move_if_exists ~/.nethackrc
 move_if_exists ~/.gtkrc-2.0-kde4
+move_if_exists ~/.Xmodmap
 move_if_exists ~/.dotfiles_dir
 
 ln -sv "$PWD/vim" ~/.vim
@@ -29,6 +39,7 @@ ln -sv "$PWD/inputrc" ~/.inputrc
 ln -sv "$PWD/gdbinit" ~/.gdbinit
 ln -sv "$PWD/nethackrc" ~/.nethackrc
 ln -sv "/dev/null" ~/.gtkrc-2.0-kde4
+ln -sv "$PWD/Xmodmap" ~/.Xmodmap
 ln -sv "$PWD" ~/.dotfiles_dir
 
 if ! [ -f user-aliases ]; then
@@ -38,6 +49,3 @@ fi
 if ! [ -d HyperSpec ]; then
 	./get-hyperspec
 fi
-
-./get-fonts
-limp/install.sh

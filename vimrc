@@ -109,7 +109,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \|\ %r%{CurDir()}%h\ \ \ Line:\ %l
 " Appearance options
 if has("gui_running")
 	colors solarized
-	set guifont=ProFont\ 9 bg=light
+	set guifont=Monaco\ 9 bg=light
 
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
