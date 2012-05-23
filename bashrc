@@ -194,5 +194,11 @@ fi
 
 	set -o vi
 
+### Some X rubbish - really shouldn't do this here; oh well
+	# Turn on Ctrl-Alt-Bksp, but if X isn't running, silence the errors
+	setxkbmap -option terminate:ctrl_alt_bksp &> /dev/null
+	# Put on a nice cursor (some WMs leave it as the black X)
+	xsetroot -cursor_name left_ptr
+
 ### Check for updates
 	update_dotfiles &
