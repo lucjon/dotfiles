@@ -1,0 +1,6 @@
+#!/bin/bash
+# Silence any errors we'd get on a ptty
+
+if which consolechars &> /dev/null; then
+	consolechars -f Lat15-Terminus14 2> /dev/null
+fi

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+function rec_dirfind {
+	start=$PWD
+	current=$start
+	limit=10
+	i=0
+
+	while true; do
+		if [ $i -ge $limit ] || [ $current == / ]; then
+			break
+		fi
+
+		current=$current/..
+		cd $current
+
+		if [ -d $1 ]; then
+			echo -n $current
+			cd $start
+			return 0
+		fi
+
+		i=$(($i + 1))
+	done
+
+	cd $start
+	return 1
+}
+
+function mb_ingit {
+	[ -d ".git" ];
+}
+function mb_inhg {
+	[ -d ".hg" ];
+}
+function mb_inbzr {
+	[ -d ".bzr" ];
+}
+
+function commit {
+	OLD_EDITOR=$EDITOR
+
+	if [ "$MB_VCS_EDITOR_NANO" == "yes" ]; then
+		# vim seems to be a bit borked, ^C breaks everything
+		# when not used directly from shell
+		export EDITOR=nano
+	fi
+
+	if mb_ingit; then
+		git commit -a
+	elif mb_inhg; then
+		hg add .
+		hg commit
+	elif mb_inbzr; then
+		bzr add .
+		bzr commit
+	else
+		echo "commit: did not find supported (hg, git, bzr) VCS in $PWD"
+	fi
+
+	EDITOR=$OLD_EDITOR
+}
