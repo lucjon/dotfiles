@@ -4,7 +4,14 @@ curl "ftp://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-7-0.tar.gz"
 echo
 rm -f HyperSpec-*.text
 
-if ! [ -e /usr/share/doc/hyperspec ]; then
-	echo "** symlinking -> /usr/share/doc/hyperspec"
-	sudo ln -sv "$PWD/HyperSpec" /usr/share/doc/hyperspec
+dest=/usr/share/doc/hyperspec
+if ! [ -d /usr/share/doc ]; then
+	# We're on Windows, probably
+	dest=~/Documents/HyperSpec
+fi
+	
+
+if ! [ -e $dest ]; then
+	echo "** symlinking -> $dest"
+	sudo ln -sv "$PWD/HyperSpec" $dest
 fi

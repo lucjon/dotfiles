@@ -19,5 +19,9 @@ test -d /opt/devkitpro && . bashrc.d/devkitpro
 if [ "$DESKTOP_SESSION" != "" ]; then
 	grep xmonad "$DESKTOP_SESSION" && . bashrc.d/xmonad
 fi
+# If we're on Windows, set up PATH correctly
+if [ -e /c/ ]; then
+	. bashrc.d/windowspath
+fi
 
 popd

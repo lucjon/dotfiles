@@ -1,0 +1,20 @@
+#!/bin/bash
+# Configures the path correctly on Windows systems
+
+for d in $(find /c -maxdepth 1 -name Python\* 2>/dev/null); do
+	if [ -d $d ]; then
+		echo "Found Python at $d."
+		version=$(echo $d | cut -dn -f2)
+
+		PATH=$PATH:$d:$d/Scripts
+		alias "python${version}=$d/python"
+	fi
+done
+
+for d in $(find /c -maxdepth 1 -name Ruby\* 2>/dev/null); do
+	echo "Found Ruby at $d."
+
+	if [ -d $d ]; then
+		PATH=$PATH:$d/bin
+	fi
+done
