@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pushd .
+cd ~/.dotfiles_dir
+
 # Automatically check for dotfiles updates
 . bashrc.d/autoupdate
 # Provides aliases for various VCS commands
@@ -14,3 +17,5 @@
 -d /opt/devkitpro && . bashrc.d/devkitpro
 # When running xmonad, do some X setup
 grep xmonad "$DESKTOP_SESSION" && . bashrc.d/xmonad
+
+popd

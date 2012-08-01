@@ -18,7 +18,13 @@ MB_HEADER_R2=""
 for x in {0..79}; do
 	MB_HEADER_R2="$MB_HEADER_R2 "
 done
-MB_HEADER_R2="${MB_HEADER_R2}\r\`uptime | cut -d, -f1\`  \`mb_r2_ex\`"
+
+if which uptime &> /dev/null; then
+	MB_HEADER_R2="${MB_HEADER_R2}\r\`uptime | cut -d, -f1\`  \`mb_r2_ex\`"
+else
+	MB_HEADER_R2="${MB_HEADER_R2}\r  \`mb_r2_ex\`"
+fi
+
 # Header row deinit
 MB_HEADER_EN="\[\e[0m\e[u\]"
 # Header row
@@ -76,7 +82,6 @@ function mb_r2_ex {
 		echo -n " [git: " `git log -1 "--pretty=format:%s, %ar" 2> /dev/null | cut -c1-45`...
 	fi
 }
-fi
 
 clear
 echo
