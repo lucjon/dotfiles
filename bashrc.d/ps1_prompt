@@ -46,7 +46,10 @@ function clear {
 
 # PS1
 PS1="${MB_HEADER}${MB_PROMPT}"
-echo -ne "\e[s\e[0;0H(ok. shell: bash $BASH_VERSION); `fortune -s -n 45`\e[3;0H\e[u"
+
+if which fortune &> /dev/null; then
+	echo -ne "\e[s\e[0;0H(ok. shell: bash $BASH_VERSION); `fortune -s -n 45`\e[3;0H\e[u"
+fi
 # PROMPT_COMMAND
 PROMPT_COMMAND=mb_pcmd_ex
 
