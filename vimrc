@@ -24,7 +24,7 @@ set ignorecase smartcase						" Case-insensitive search (when necessary)
 set magic										" Yay special search chars
 set background=dark								" It probably will be
 set encoding=utf8								" Just in case Unicode gets mucked up.
-set nobackup noswapfile							" Swapfiles are just annoying; and I don't need x~ everywhere
+set nobackup noswapfile							" Swapfiles are [usually] just annoying; and I don't need x~ everywhere
 set title										" Give terminal a title
 set scrolloff=3									" Move down a few lines when reach end of screen
 set number										" Line numbers
@@ -114,7 +114,8 @@ if has("gui_running")
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
 else
-	colors darkblue
+	colors blue
+	set nocursorline
 endif
 
 " Bind Gundo
@@ -145,7 +146,4 @@ function! SetupProgramming()
 	filetype indent on
 endfunction
 
-augroup rccmd
-	autocmd!
-	autocmd filetype lisp,python,javascript,ruby,perl,c,bash,sh,asm,java,vim call SetupProgramming()
-augroup END
+nmap <silent> <Leader>p :call SetupProgramming()<CR>

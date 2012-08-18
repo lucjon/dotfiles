@@ -2,7 +2,7 @@
    VIM KEYBINDINGS SURVIVAL GUIDE
 ------------------+-------------------+
 <C-K>   Clear hls  ,in   Re-indent file
-<Tab>   SuperTab   ,em   Empty file
+,m      Mcro lines ,em   Empty file
 <C-S-Y> Gundo      ,py   Open Py shell
 ,bash   Conque sh  ,rm   Right margin
 <C-P>   Paste mode <F2>  [ins] Save
