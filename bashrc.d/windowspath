@@ -18,3 +18,19 @@ for d in $(find /c -maxdepth 1 -name Ruby\* 2>/dev/null); do
 		PATH=$PATH:$d/bin
 	fi
 done
+
+if which ghci &> /dev/null; then
+	alias ghci=ghcii.sh
+fi
+
+if [ -d /c/MinGW ]; then
+	PATH=$PATH:/c/MinGW/bin
+fi
+
+function golatex {
+	for d in $(echo "d e f g h i j k l m n o p q r s"); do
+		if [ -d "/$d/miktex" ]; then
+			PATH="$PATH:/$d/miktex/miktex/bin"
+		fi
+	done
+}

@@ -21,7 +21,7 @@ function keepalias {
 ### Aliases
 alias gpush="git push origin master"
 alias ..="cd ..; pwd"
-alias l="ls --color -F"
+alias l="ls --color -Fb"
 alias ll="ls --color -Fl"
 alias la="ls --color -Fa"
 alias lla="ls --color -Fla"
