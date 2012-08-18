@@ -23,5 +23,9 @@ fi
 if [ -e /c/ ]; then
 	. bashrc.d/windowspath
 fi
+# If we're on a vaguely recent version of Bash, source completion
+if [ "${BASH_VERSINFO[0]}" -ge 4 ]; then
+	. bashrc.d/bash-completion/bash_completion
+fi
 
 popd
