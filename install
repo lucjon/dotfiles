@@ -4,15 +4,18 @@ BACKUP=./backup
 mkdir -pv "$BACKUP"
 touch "$BACKUP/remember_dotfiles_are_hidden"
 
-function move_if_exists {
+function do_install {
 	if [ -e "$1" ] || [ -d "$1" ]; then
-		if [ -L "$1" ] && echo -n "$1" | grep -F "$PWD"; then
+		if [ -L "$1" ] && readlink -f "$1" | grep -F "$2" &> /dev/null; then
 			echo "(skipping already-installed $1)"
+			return 0
 		elif ! mv -v "$1" "$BACKUP"; then
 			echo "Failed to back up $1"
 			exit 1
 		fi
 	fi
+
+	ln -sv "$2" "$1"
 }
 
 # first-time install tasks
@@ -22,30 +25,19 @@ if ! [ -d ~/.dotfiles_dir/ ]; then
 	limp/install.sh
 fi
 
-move_if_exists ~/.vimrc
-move_if_exists ~/.bashrc
-move_if_exists ~/.vim
-move_if_exists ~/.inputrc
-move_if_exists ~/.gdbinit
-move_if_exists ~/.nethackrc
-move_if_exists ~/.gtkrc-2.0-kde4
-move_if_exists ~/.Xmodmap
-move_if_exists ~/.dotfiles_dir
-
-ln -sv "$PWD/vim" ~/.vim
-ln -sv "$PWD/vimrc" ~/.vimrc
-ln -sv "$PWD/bashrc" ~/.bashrc
-ln -sv "$PWD/inputrc" ~/.inputrc
-ln -sv "$PWD/gdbinit" ~/.gdbinit
-ln -sv "$PWD/nethackrc" ~/.nethackrc
-ln -sv "/dev/null" ~/.gtkrc-2.0-kde4
-ln -sv "$PWD/Xmodmap" ~/.Xmodmap
-ln -sv "$PWD" ~/.dotfiles_dir
+do_install ~/.vimrc "$PWD/vimrc"
+do_install ~/.bashrc "$PWD/bashrc"
+do_install ~/.vim "$PWD/vim"
+do_install ~/.inputrc "$PWD/inputrc"
+do_install ~/.gdbinit "$PWD/gdbinit"
+do_install ~/.nethackrc "$PWD/nethackrc"
+do_install ~/.gtkrc-2.0-kde4 /dev/null
+do_install ~/.Xmodmap "$PWD/Xmodmap"
+do_install ~/.i3 "$PWD/i3"
+do_install ~/.dotfiles_dir "$PWD"
 
 if ! [ -f user-aliases ]; then
 	touch user-aliases
 fi
 
-if ! [ -d HyperSpec ]; then
-	./get-hyperspec
-fi
+pip install i3-py

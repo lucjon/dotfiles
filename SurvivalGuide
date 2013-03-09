@@ -11,7 +11,7 @@
 ,mbt    Tgl bufexp ,cc   Comment
 ,Tab    Algn tabs  ,t=   Align =s
 ,tc     Colorizer  ,s    Show whitspace
-<F12>   Limp lis'n ,x    Molly
+<F12>   Limp lis'n <C-P> CtrlP (fuzzy)
 <C-]>   Goto def'n ,t    Tasks eg. TODO
 <C-h>/<C-j>/<C-k>/<C-l>  Change windows
 <F1>/<F11>               Change buffers
