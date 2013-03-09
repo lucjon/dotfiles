@@ -23,11 +23,15 @@ def wallpaper_index(num):
 def wallpaper_random(num):
 	return random.choice(glob.glob(os.path.join(wallpaper_path, '*')))
 
-def change_wallpaper(event, data, subscription):
+def change_wallpaper(num):
+	path = globals()['wallpaper_' + MODE](num)
+	subprocess.call(['feh', '--no-fehbg', '--bg-scale', path])
+
+def on_workspace_change(event, data, subscription):
 	for workspace in data:
 		if workspace['visible']:
-			path = globals()['wallpaper_' + MODE](workspace['num'])
-			subprocess.call(['feh', '--no-fehbg', '--bg-scale', path])
+			change_wallpaper(workspace['num'])
 			
 if __name__ == '__main__':
-	i3.Subscription(change_wallpaper, 'workspace')
+	change_wallpaper(1)
+	i3.Subscription(on_workspace_change, 'workspace')
