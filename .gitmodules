@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-orgmode"]
 	path = vim/bundle/vim-orgmode
 	url = https://github.com/jceb/vim-orgmode
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
