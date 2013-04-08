@@ -43,3 +43,9 @@
 [submodule "vim/bundle/vim-speeddating"]
 	path = vim/bundle/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating
+[submodule "vim/bundle/vim-iawriter"]
+	path = vim/bundle/vim-iawriter
+	url = https://github.com/jacekd/vim-iawriter
+[submodule "vim/bundle/vim-rust"]
+	path = vim/bundle/vim-rust
+	url = https://github.com/bryanjswift/vim-rust
