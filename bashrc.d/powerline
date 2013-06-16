@@ -1,0 +1,3 @@
+#!/bin/bash
+export POWERLINE_COMMAND=~/.dotfiles_dir/vim/bundle/powerline/scripts/powerline
+. vim/bundle/powerline/powerline/bindings/bash/powerline.sh

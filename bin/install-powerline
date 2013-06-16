@@ -1,0 +1,5 @@
+#!/bin/bash
+git clone https://github.com/Lokaltog/powerline-fonts ~/.fonts/powerline-fonts
+git clone https://github.com/fromonesrc/monaco-powerline-vim ~/.fonts/powerline-monaco
+fc-cache -fv ~/.fonts/powerline-fonts
+fc-cache -fv ~/.fonts/powerline-monaco

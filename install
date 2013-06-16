@@ -21,7 +21,7 @@ function do_install {
 # first-time install tasks
 if ! [ -d ~/.dotfiles_dir/ ]; then
 	echo 'First-time install! Great'
-	./get-fonts
+	./bin/get-fonts
 fi
 
 do_install ~/.vimrc "$PWD/vimrc"
@@ -35,6 +35,8 @@ do_install ~/.Xmodmap "$PWD/Xmodmap"
 do_install ~/.Xdefaults "$PWD/Xdefaults"
 do_install ~/.i3 "$PWD/i3"
 do_install ~/.dotfiles_dir "$PWD"
+
+bin/install-powerline
 
 if ! [ -f user-aliases ]; then
 	touch user-aliases

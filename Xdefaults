@@ -16,8 +16,8 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
-URxvt*font: xft:Monaco:size=7
-URxvt*boldFont: xft:Monaco:bold:size=7
+URxvt*font: xft:Inconsolata for Powerline:pixelsize=12
+URxvt*boldFont: xft:Inconsolata for Powerline:bold:pixelsize=12
 URxvt*letterSpace: -1
 
 !! http://github.com/altercation/solarized

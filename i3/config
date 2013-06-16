@@ -141,7 +141,7 @@ bar {
 
 exec xrdb /home/lucas/.dotfiles_dir/Xdefaults
 exec dropbox start
-exec /home/lucas/.dotfiles_dir/guistart.py
+exec /home/lucas/.dotfiles_dir/bin/wallpaper-tool
 exec xterm -e vim /home/lucas/Dropbox/Notes.org
 exec nm-applet
 exec fluxgui

@@ -135,6 +135,7 @@ endfunction
 command! -nargs=0 EdVimrc ed ~/.vimrc
 command! -nargs=0 SurvivalGuide vs ~/.dotfiles_dir/SurvivalGuide
 command! -nargs=* S call DoPCRE('<args>')
+command! -nargs=0 MakeExec !chmod +x %
 
 " Load some plugins automatically
 function! SetupProgramming()
@@ -161,3 +162,6 @@ endfunction
 nmap <silent> <Leader>be :call BareEnable()<CR>
 nmap <silent> <Leader>bd :call BareDisable()<CR>
 nmap <silent> <Leader>sh :shell<CR>
+
+" Activate Powerline
+set rtp+=$HOME/.dotfiles_dir/vim/bundle/powerline/powerline/bindings/vim

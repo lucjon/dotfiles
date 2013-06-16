@@ -21,6 +21,7 @@ function keepalias {
 ### Aliases
 alias gpush="git push origin master"
 alias ..="cd ..; pwd"
+alias ls="ls --group-directories-first -C -w $(($COLUMNS / 2))"
 alias l="ls --color -Fb"
 alias ll="ls --color -Fl"
 alias la="ls --color -Fa"
