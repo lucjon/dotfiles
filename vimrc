@@ -49,7 +49,7 @@ nmap <leader>bash	:ConqueTermVSplit bash<CR>
 nmap <leader>py		:ConqueTermVSplit python<CR><Esc>:set syntax=python<CR>i
 
 " Press F2 to save quickly in insert mode
-imap <F2>	<Esc>:w!<CR>i
+imap <F2>	<Esc>:w!<CR>a
 
 " Source VimL in buffer
 nmap <F9>  <Esc>:so %<CR>
@@ -114,7 +114,7 @@ if has("gui_running")
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
 else
-	colors blue
+	colors default
 	set nocursorline
 endif
 
@@ -147,3 +147,17 @@ function! SetupProgramming()
 endfunction
 
 nmap <silent> <Leader>p :call SetupProgramming()<CR>
+
+" Bare-bones view mode
+function! BareEnable()
+	set guioptions-=r laststatus=0 noruler nonumber noshowmode noshowcmd
+	bufdo highlight NonText guifg=bg ctermfg=7
+endfunction
+
+function! BareDisable()
+	set guioptions+=r laststatus=1 ruler number showmode showcmd
+endfunction
+
+nmap <silent> <Leader>be :call BareEnable()<CR>
+nmap <silent> <Leader>bd :call BareDisable()<CR>
+nmap <silent> <Leader>sh :shell<CR>
