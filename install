@@ -34,6 +34,7 @@ do_install ~/.gtkrc-2.0-kde4 /dev/null
 do_install ~/.Xmodmap "$PWD/Xmodmap"
 do_install ~/.Xdefaults "$PWD/Xdefaults"
 do_install ~/.i3 "$PWD/i3"
+do_install ~/.config/powerline "$PWD/powerline"
 do_install ~/.dotfiles_dir "$PWD"
 
 bin/install-powerline
