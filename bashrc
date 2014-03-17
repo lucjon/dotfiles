@@ -18,7 +18,7 @@ test -f ~/.no_funny_business || . bashrc.d/powerline
 test -d /opt/devkitpro && . bashrc.d/devkitpro
 # When running xmonad, do some X setup
 if [ "$DESKTOP_SESSION" != "" ]; then
-	( echo "$DESKTOP_SESSION" | grep xmonad ) && . bashrc.d/xmonad
+	( echo "$DESKTOP_SESSION" | grep xmonad &> /dev/null ) && . bashrc.d/xmonad
 fi
 # If we're on Windows, set up PATH correctly
 if [ -e /c/ ]; then
@@ -30,3 +30,7 @@ if [ "${BASH_VERSINFO[0]}" -ge 4 ] && [ -f /usr/share/bash-completion/bash_compl
 fi
 
 popd &> /dev/null
+
+export PATH=/opt/plasticscm4/client:$PATH
+
+export PATH=/opt/plasticscm4/server:$PATH

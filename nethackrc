@@ -1,5 +1,5 @@
 OPTIONS=autodig,autoquiver,!autopickup
-OPTIONS=male,name:Lucas,align:c,role:Wizard,race:Human
+OPTIONS=male,name:Lucas,align:c,role:Wizard,race:Elf
 OPTIONS=catname:Morris
 OPTIONS=fruit:bacon
 OPTIONS=color,hilite_pet,DECgraphics

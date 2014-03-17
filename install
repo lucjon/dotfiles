@@ -31,13 +31,18 @@ do_install ~/.inputrc "$PWD/inputrc"
 do_install ~/.gdbinit "$PWD/gdbinit"
 do_install ~/.nethackrc "$PWD/nethackrc"
 do_install ~/.gtkrc-2.0-kde4 /dev/null
+do_install ~/.fonts.conf "$PWD/fonts.conf"
 do_install ~/.Xmodmap "$PWD/Xmodmap"
+do_install ~/.XCompose "$PWD/XCompose"
 do_install ~/.Xdefaults "$PWD/Xdefaults"
+do_install ~/.xprofile "$PWD/xprofile"
 do_install ~/.i3 "$PWD/i3"
 do_install ~/.config/powerline "$PWD/powerline"
 do_install ~/.dotfiles_dir "$PWD"
 
-bin/install-powerline
+if ! [ -d ~/.fonts/powerline-fonts ]; then
+	bin/install-powerline
+fi
 
 if ! [ -f user-aliases ]; then
 	touch user-aliases

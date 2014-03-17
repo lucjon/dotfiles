@@ -9,30 +9,52 @@ MODE = 'random'
 
 #######
 import glob, i3, json, os, random, subprocess
-wallpaper_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../wallpaper')
+wallpaper_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../wallpaper/square')
+wide_wallpaper_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../wallpaper/wide')
 
 def wallpaper_index(num):
-	default = os.path.join(wallpaper_path, '1.png')
-	we_want = glob.glob(os.path.join(wallpaper_path, '%d.*' % num))
+	path = wide_wallpaper_path if wide else wallpaper_path
+	default = os.path.join(path, '1.png')
+	we_want = glob.glob(os.path.join(path, '%d.*' % num))
 
 	if len(we_want) == 0:
 		return default
 	else:
 		return we_want[0]
 
-def wallpaper_random(num):
+def wallpaper_random(num, wide):
+	path = wide_wallpaper_path if wide else wallpaper_path
 	return random.choice(glob.glob(os.path.join(wallpaper_path, '*')))
 
-def change_wallpaper(num):
-	path = globals()['wallpaper_' + MODE](num)
+def change_wallpaper(num, wide):
+	path = globals()['wallpaper_' + MODE](num, wide)
 	print('Changing wallpaper on workspace %d to %s' % (num, path))
-	subprocess.call(['feh', '--no-fehbg', '--bg-scale', path])
+	subprocess.call(['feh', '--no-fehbg', '--bg-fill', path])
+
+def is_wide(op_name):
+	outputs = i3.get_outputs()
+	square, wide = 4 / 3.0, 16 / 10.0
+
+	for output in outputs:
+		if output['name'] == op_name:
+			w, h = output['rect']['width'], output['rect']['height']
+			ratio = w / float(h)
+
+			return abs(ratio - square) > abs(ratio - wide)
 
 def on_workspace_change(event, data, subscription):
 	if event['change'] == 'focus':
-		change_wallpaper(event['current']['num'])
+		num = event['current']['num']
+		wide = False
+
+		for ws in data:
+			if ws['num'] == num:
+				wide = is_wide(ws['output'])
+				break
+
+		change_wallpaper(num, wide)
 
 if __name__ == '__main__':
 	print('Setting initial wallpaper...')
-	change_wallpaper(1)
+	change_wallpaper(1, True)
 	i3.Subscription(on_workspace_change, 'workspace')

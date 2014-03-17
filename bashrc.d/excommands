@@ -34,9 +34,7 @@ source ~/.dotfiles_dir/user-aliases
 
 ### Environment
 export PATH="$PATH:$DEVKITPPC/bin:$HOME/bin:$HOME/.local/bin"
-
-if [ "$EDITOR" == "vi" ]; then
-	export EDITOR=vim
-fi
+export TERMINAL="gnome-terminal"
+export EDITOR=vim
 
 set -o vi

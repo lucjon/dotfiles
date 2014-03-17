@@ -11,7 +11,7 @@ set timeoutlen=500								" Shift+O isn't quite so slow, but keep it reasonably 
 set mouse=a										" Enable console mouse support
 set nocp 										" Disable vi compatibility
 set nohls incsearch								" No highlight of search terms, no need to press enter
-set autoindent smartindent 						" Autoindent
+set autoindent 									" Autoindent
 set tabstop=4 shiftwidth=4						" 4-tabs
 set showmatch mat=2								" Switch briefly to opposite (/[/etc for 0.2 sec
 set ruler										" Show cursor pos.
@@ -32,6 +32,7 @@ set wrap linebreak textwidth=0					" Default wrapping is weird...
 set backspace=indent,eol,start					" Fix broken backspace
 set cursorline									" Highlight current line
 set clipboard+=unnamed							" Yank to clipboard by default.
+set tildeop										" Convenient sometimes
 set ofu=syntaxcomplete#Complete					" Enable omni-completion
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 
@@ -132,7 +133,7 @@ function! DoPCRE(expr)
 	execute s
 endfunction
 
-command! -nargs=0 EdVimrc ed ~/.vimrc
+command! -nargs=0 EdVimrc ed $MYVIMRC
 command! -nargs=0 SurvivalGuide vs ~/.dotfiles_dir/SurvivalGuide
 command! -nargs=* S call DoPCRE('<args>')
 command! -nargs=0 MakeExec !chmod +x %
@@ -151,17 +152,24 @@ nmap <silent> <Leader>p :call SetupProgramming()<CR>
 
 " Bare-bones view mode
 function! BareEnable()
-	set guioptions-=r laststatus=0 noruler nonumber noshowmode noshowcmd
-	bufdo highlight NonText guifg=bg ctermfg=7
+	setlocal guioptions-=r laststatus=0 noruler nonumber noshowmode noshowcmd nocursorline
+	highlight NonText guifg=bg ctermfg=0
+	redraw!
 endfunction
 
 function! BareDisable()
-	set guioptions+=r laststatus=1 ruler number showmode showcmd
+	setlocal guioptions+=r laststatus=1 ruler number showmode showcmd
 endfunction
 
 nmap <silent> <Leader>be :call BareEnable()<CR>
 nmap <silent> <Leader>bd :call BareDisable()<CR>
 nmap <silent> <Leader>sh :shell<CR>
+nmap <silent> <Leader>df :enew<CR>,be
 
 " Activate Powerline
 set rtp+=$HOME/.dotfiles_dir/vim/bundle/powerline/powerline/bindings/vim
+
+" Protobuf syntax highlighting
+augroup filetype
+	au! BufRead,BufNewFile *.proto setfiletype proto
+augroup end

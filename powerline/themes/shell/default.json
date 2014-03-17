@@ -26,6 +26,9 @@
 				"name": "virtualenv"
 			},
 			{
+				"name": "branch"
+			},
+			{
 				"name": "cwd",
 				"args": {
 					"dir_limit_depth": 3
@@ -36,9 +39,6 @@
 			{
 				"module": "powerline.segments.shell",
 				"name": "last_pipe_status"
-			},
-			{
-				"name": "branch"
 			}
 		]
 	}
