@@ -1,9 +1,0 @@
-OPTIONS=autodig,autoquiver,!autopickup
-OPTIONS=male,name:Lucas,align:c,role:Wizard,race:Human
-OPTIONS=catname:Morris
-OPTIONS=fruit:bacon
-OPTIONS=color,hilite_pet,IBMgraphics
-OPTIONS=showexp,time
-OPTIONS=lit_corridor
-OPTIONS=!cmdassist
-OPTIONS=ascii_map,fullscreen,!tiled_map,map_mode:ascii8x12
