@@ -25,6 +25,7 @@ if ! [ -d ~/.dotfiles_dir/ ]; then
 fi
 
 do_install ~/.vimrc "$PWD/vimrc"
+do_install ~/.emacs "$PWD/emacs"
 do_install ~/.bashrc "$PWD/bashrc"
 do_install ~/.vim "$PWD/vim"
 do_install ~/.inputrc "$PWD/inputrc"

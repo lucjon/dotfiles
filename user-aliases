@@ -1,6 +1,4 @@
-alias laptopgw='sudo route del default; sudo route add default gw 192.168.1.209'
 alias c='clear'
-alias monitor='xrandr'
-alias monitor='xrandr --output VGA-0 --right-of LVDS --auto --output LVDS --auto'
 alias sec='unset HISTFILE'
 alias tcr='truecrypt -t'
+alias monitor='xrandr --output CRT1 --left-of LVDS --mode 1280x1024 --output LVDS --mode 1366x768 --output DFP1 --right-of LVDS --mode 1440x900'

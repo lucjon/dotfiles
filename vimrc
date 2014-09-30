@@ -35,6 +35,7 @@ set clipboard+=unnamed							" Yank to clipboard by default.
 set tildeop										" Convenient sometimes
 set ofu=syntaxcomplete#Complete					" Enable omni-completion
 let g:ConqueTerm_Color = 1						" Enable terminal colour
+let g:tex_indent_brace = 0						" Turn off buggy LaTeX indentation
 
 " Set leader right
 let mapleader = ","
@@ -45,6 +46,9 @@ cabbr <expr> %% expand('%:p:h')
 " Toggle hls
 nmap <C-K>  :set hlsearch!<CR>:set hlsearch?<CR>
 
+" Open tag search
+nmap <C-A>  :CtrlPTag<CR>
+
 " Open a shell
 nmap <leader>bash	:ConqueTermVSplit bash<CR>
 nmap <leader>py		:ConqueTermVSplit python<CR><Esc>:set syntax=python<CR>i
@@ -54,7 +58,6 @@ imap <F2>	<Esc>:w!<CR>a
 
 " Source VimL in buffer
 nmap <F9>  <Esc>:so %<CR>
-map <C-P>	:set paste!<CR>:set paste?<CR>
 
 " Buffer switch quickly
 nnoremap <F1>	:bp<CR>
