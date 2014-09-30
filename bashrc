@@ -7,9 +7,6 @@ cd ~/.dotfiles_dir
 . bashrc.d/autoupdate
 # Provides aliases for various VCS commands
 . bashrc.d/vcs_alias
-# Provides a fancy PS1 prompt
-# test -f ~/.no_funny_business || . bashrc.d/ps1_prompt
-test -f ~/.no_funny_business || . bashrc.d/powerline
 # Use a nice console font
 . bashrc.d/console_font
 # Provides sensible aliases & environment
@@ -30,7 +27,3 @@ if [ "${BASH_VERSINFO[0]}" -ge 4 ] && [ -f /usr/share/bash-completion/bash_compl
 fi
 
 popd &> /dev/null
-
-export PATH=/opt/plasticscm4/client:$PATH
-
-export PATH=/opt/plasticscm4/server:$PATH
