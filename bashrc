@@ -25,5 +25,4 @@ fi
 if [ "${BASH_VERSINFO[0]}" -ge 4 ] && [ -f /usr/share/bash-completion/bash_completion ]; then
 	. /usr/share/bash-completion/bash_completion
 fi
-
 popd &> /dev/null

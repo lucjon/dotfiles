@@ -25,7 +25,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_hist
+bindsym $mod+z exec emenu
+bindsym $mod+Shift+f exec translatefr
 
 # change focus
 bindsym $mod+j focus left
