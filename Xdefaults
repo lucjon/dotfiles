@@ -11,6 +11,7 @@ URxvt.internalBorder: 0
 URxvt.lineSpace: 0
 URxvt.saveLines: 10000
 
+URxvt.buffered: false
 URxvt.scrollBar: false
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true

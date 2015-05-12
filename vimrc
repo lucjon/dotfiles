@@ -117,6 +117,8 @@ if has("gui_running")
 
 	if has("win32")
 		set guifont=Monaco:h9
+	elseif has("gui_athena")
+		set guifont=fixed
 	else
 		set guifont=Monaco\ 9
 	endif
