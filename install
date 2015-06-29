@@ -38,6 +38,7 @@ do_install ~/.XCompose "$PWD/XCompose"
 do_install ~/.Xdefaults "$PWD/Xdefaults"
 do_install ~/.xprofile "$PWD/xprofile"
 do_install ~/.i3 "$PWD/i3"
+do_install ~/.conkyrc "$PWD/conkyrc"
 do_install ~/.dotfiles_dir "$PWD"
 
 if ! [ -d ~/.fonts/powerline-fonts ]; then

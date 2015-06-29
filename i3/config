@@ -176,11 +176,12 @@ bar {
 		}
 }
 
+exec /usr/bin/gnome-settings-daemon
 exec_always xsetroot -mod 0 0 -fg '#001'
 exec xrdb /home/lucas/.dotfiles_dir/Xdefaults
 exec dropbox start
 exec xterm -e vim /home/lucas/Dropbox/Notes.org
 exec nm-applet
-exec /usr/bin/gnome-settings-daemon
+exec conky
 exec_always synclient VertEdgeScroll=1
 exec_always xmodmap /home/lucas/.Xmodmap
