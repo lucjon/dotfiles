@@ -21,11 +21,7 @@ function keepalias {
 ### Aliases
 alias gpush="git push origin master"
 alias ..="cd ..; pwd"
-if [ "$COLUMNS" == "" ]; then
-	alias ls="ls --group-directories-first -C"
-else
-	alias ls="ls --group-directories-first -C -w $(($COLUMNS / 2))"
-fi
+alias ls="ls --group-directories-first -C"
 alias l="ls --color -Fb"
 alias ll="ls --color -Fl"
 alias la="ls --color -Fa"

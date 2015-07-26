@@ -1,0 +1,91 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+alignment top_left
+background no
+border_width 1
+cpu_avg_samples 4
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont Workplace Sans:size=11:antialias=false
+gap_x 20
+gap_y 60
+minimum_size 250 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type override
+own_window_transparent yes
+double_buffer yes
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale yes
+show_graph_range yes
+
+TEXT
+Lucas Jones
+ljnj@st-andrews.ac.uk
+$battery_bar
+
+
+${color grey}Uptime:
+	$color $uptime
+${color grey}RAM Usage:
+	$color $mem/$memmax - $memperc% ${membar 4}
+${color grey}CPU Usage: ($freq_g GHz) $cpu%
+	${cpubar 4}
+Temperature:
+	$acpitemp °C
+
+/		$color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+/media/win7		$color${fs_used /media/win7}/${fs_size /media/win7} ${fs_bar 6 /media/win7}
+/media/windows		$color${fs_used /media/windows}/${fs_size /media/windows} ${fs_bar 6 /media/windows}
+
+eth0${color grey}
+	${addr eth0}
+	Tx:		$color ${totalup eth0} ${color grey}${goto 115}Rx:   	$color ${totaldown eth0}
+wlan0${color grey}
+	${addr wlan0}
+	${wireless_essid wlan0} (${wireless_bitrate wlan0})
+	${wireless_link_qual wlan0}% 		${wireless_link_bar wlan0}
+	Tx:		$color ${totalup wlan0} ${color grey}${goto 115}Rx:   	$color ${totaldown wlan0}
+
+Name              ${goto 120}PID   ${goto 175}CPU%   ${goto 220}MEM%${color grey}
+${top name 1} ${goto 120}${top pid 1}${goto 170}${top cpu 1}${goto 215}${top mem 1}
+${top name 2} ${goto 120}${top pid 2}${goto 170}${top cpu 2}${goto 215}${top mem 2}
+${top name 3} ${goto 120}${top pid 3}${goto 170}${top cpu 3}${goto 215}${top mem 3}
+${top name 4} ${goto 120}${top pid 4}${goto 170}${top cpu 4}${goto 215}${top mem 4}
