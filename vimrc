@@ -24,7 +24,8 @@ set ignorecase smartcase						" Case-insensitive search (when necessary)
 set magic										" Yay special search chars
 set background=dark								" It probably will be
 set encoding=utf8								" Just in case Unicode gets mucked up.
-set nobackup noswapfile							" Swapfiles are [usually] just annoying; and I don't need x~ everywhere
+set nobackup 									" I don't need x~ everywhere
+set directory=~/tmp								" Swapfiles are sometimes useful, but keep them out the way
 set title										" Give terminal a title
 set scrolloff=3									" Move down a few lines when reach end of screen
 set number										" Line numbers
@@ -84,6 +85,12 @@ nnoremap <leader>rm	:call ToggleRightMargin()<CR>
 " Better % matching
 runtime macros/matchit.vim
 
+" Free form FORTRAN source by default
+let fortran_free_source=1
+let fortran_have_tabs=1
+let fortran_more_precise=1
+let fortran_do_enddo=1
+
 " Generally better editing
 syntax enable
 filetype on
@@ -111,7 +118,7 @@ endfunction
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ \|\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 " Appearance options
-if has("gui_running")
+if has("gui_running") && !has("nvim")
 	colors solarized
 	set bg=light
 
@@ -183,4 +190,15 @@ set rtp+=$HOME/.dotfiles_dir/vim/bundle/powerline/powerline/bindings/vim
 " Protobuf syntax highlighting
 augroup filetype
 	au! BufRead,BufNewFile *.proto setfiletype proto
+augroup end
+
+" Sort out colouring at the right time
+function! CheckColors()
+	if has("nvim") && has("gui_running") && $NVIM_TUI_ENABLE_TRUE_COLOR == "1"
+		colors solarized
+	endif
+endfunction
+
+augroup colour
+	au! VimEnter * call CheckColors()
 augroup end

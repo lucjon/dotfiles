@@ -57,8 +57,8 @@ show_graph_scale yes
 show_graph_range yes
 
 TEXT
-Lucas Jones
-ljnj@st-andrews.ac.uk
+${exec git config --global user.name}
+${exec git config --global user.email}
 $battery_bar
 
 
@@ -84,7 +84,7 @@ wlan0${color grey}
 	${wireless_link_qual wlan0}% 		${wireless_link_bar wlan0}
 	Tx:		$color ${totalup wlan0} ${color grey}${goto 115}Rx:   	$color ${totaldown wlan0}
 
-Name              ${goto 120}PID   ${goto 175}CPU%   ${goto 220}MEM%${color grey}
+Name              ${goto 122}PID   ${goto 175}CPU%   ${goto 220}MEM%${color grey}
 ${top name 1} ${goto 120}${top pid 1}${goto 170}${top cpu 1}${goto 215}${top mem 1}
 ${top name 2} ${goto 120}${top pid 2}${goto 170}${top cpu 2}${goto 215}${top mem 2}
 ${top name 3} ${goto 120}${top pid 3}${goto 170}${top cpu 3}${goto 215}${top mem 3}
