@@ -36,5 +36,6 @@ source ~/.dotfiles_dir/user-aliases
 export PATH="$PATH:$DEVKITPPC/bin:$HOME/bin:$HOME/.local/bin"
 export TERMINAL="gnome-terminal"
 export EDITOR=vim
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set -o vi
