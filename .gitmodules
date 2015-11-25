@@ -52,3 +52,6 @@
 [submodule "vim/bundle/glsl.vim"]
 	path = vim/bundle/glsl.vim
 	url = https://github.com/beyondmarc/glsl.vim
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
