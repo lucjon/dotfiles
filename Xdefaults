@@ -17,8 +17,8 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
-URxvt*font: xft:Inconsolata for Powerline:pixelsize=12,xft:Meslo LG S for Powerline:pixelsize=12
-URxvt*boldFont: xft:Inconsolata for Powerline:pixelsize=12,xft:Meslo LG S for Powerline:pixelsize=12
+URxvt*font: xft:Inconsolata:pixelsize=12,xft:Meslo LG S for Powerline:pixelsize=12
+URxvt*boldFont: xft:Inconsolata:pixelsize=12,xft:Meslo LG S for Powerline:pixelsize=12
 URxvt*letterSpace: -1
 
 !! Tango http://bastian.rieck.ru/blog/posts/2013/making_urxvt_beautiful/
