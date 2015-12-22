@@ -1,11 +1,17 @@
 let g:latex_command = 'pdflatex'
 let g:latex_nonstop_flag = '-interaction nonstopmode'
+let g:latex_escape = 0
+let g:latex_escape_flag = '-shell-escape'
 
 function! Get_latex_cmd(...)
 	if a:0 == 0
 		let flags = ''
 	else
 		let flags = join(a:000, ' ')
+	endif
+
+	if g:latex_escape
+		let flags = flags . ' ' . g:latex_escape_flag
 	endif
 
 	return g:latex_command . ' ' . flags . ' "' . expand('%') . '"'
@@ -35,3 +41,5 @@ command! -nargs=0  UsePlainTeX	 let g:latex_command = 'pdftex'
 
 nnoremap <silent> <buffer>  <CR>        :call Do_compile_latex()<CR>
 nnoremap <silent> <buffer>  <leader>C   :CompileLatex<CR>
+
+set inde=
