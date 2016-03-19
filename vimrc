@@ -37,6 +37,9 @@ set tildeop										" Convenient sometimes
 set ofu=syntaxcomplete#Complete					" Enable omni-completion
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 let g:tex_indent_brace = 0						" Turn off buggy LaTeX indentation
+let g:gruvbox_italic = 1						" Enable italics in color scheme
+let g:ctrlp_extensions = ['tag', 'quickfix', 'line', 'mixed']
+set wildignore+=*.o
 
 " Set leader right
 let mapleader = ","
@@ -48,7 +51,7 @@ cabbr <expr> %% expand('%:p:h')
 nmap <C-K>  :set hlsearch!<CR>:set hlsearch?<CR>
 
 " Open tag search
-nmap <C-A>  :CtrlPTag<CR>
+nmap <C-U>  :CtrlPTag<CR>
 
 " Open a shell
 nmap <leader>bash	:ConqueTermVSplit bash<CR>
@@ -133,8 +136,7 @@ if has("gui_running") && !has("nvim")
 	" I have this habit of doing ^Z to suspend, but by default this minimises the GUI. Ugh. Stop it.
 	noremap  <C-Z>	<Esc>
 else
-	colors default
-	set nocursorline
+	colors gruvbox
 endif
 
 " Bind Gundo
