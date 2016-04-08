@@ -12,7 +12,6 @@ mklink /j %USERPROFILE%\vimfiles %CD%\vim
 mklink /h %USERPROFILE%\_vimrc %CD%\vimrc
 
 rem Fetch the rest of the Git crap
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
 popd
