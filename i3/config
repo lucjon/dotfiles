@@ -185,3 +185,4 @@ exec nm-applet
 exec conky
 exec_always synclient VertEdgeScroll=1
 exec_always xmodmap /home/lucas/.Xmodmap
+exec_always /home/lucas/bin/monitor
