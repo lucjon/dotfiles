@@ -22,6 +22,7 @@ function do_install {
 if ! [ -d ~/.dotfiles_dir/ ]; then
 	echo 'First-time install! Great'
 	./bin/get-fonts
+	sudo -H pip install i3-py
 fi
 
 do_install ~/.vimrc "$PWD/vimrc"
@@ -35,6 +36,7 @@ do_install ~/.nethackrc "$PWD/nethackrc"
 do_install ~/.gtkrc-2.0-kde4 /dev/null
 do_install ~/.fonts.conf "$PWD/fonts.conf"
 do_install ~/.Xmodmap "$PWD/Xmodmap"
+do_install ~/.xbindkeysrc "$PWD/xbindkeysrc"
 do_install ~/.XCompose "$PWD/XCompose"
 do_install ~/.Xdefaults "$PWD/Xdefaults"
 do_install ~/.xprofile "$PWD/xprofile"
@@ -49,5 +51,3 @@ fi
 if ! [ -f user-aliases ]; then
 	touch user-aliases
 fi
-
-sudo -H pip install i3-py
