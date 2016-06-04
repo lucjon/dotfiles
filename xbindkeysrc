@@ -71,10 +71,13 @@ keystate_numlock = enable
 "firefox -new-window https://gmail.com/"
 	KP_Divide + Release
 
+"firefox -new-window https://facebook.com/"
+	Shift + KP_Divide + Release
+
 "firefox -new-window https://mms.st-andrews.ac.uk/mms/user/me/Modules"
 	Control + KP_Divide + Release
 
-"gnome-terminal"
+"gnome-terminal --working-directory $HOME"
 	KP_Multiply + Release
 
 "gnome-terminal -x ssh lithonian.com"
@@ -91,7 +94,31 @@ keystate_numlock = enable
 
 "xmaple"
 	Control + KP_Subtract + Release
+
+"i3-msg focus output HDMI2"
+	KP_Insert
+
+"i3-msg move container to output HDMI2"
+	Shift + KP_Insert
+
+"i3-msg focus output eDP1"
+	KP_Delete
  
+"i3-msg move container to output eDP1"
+	Shift + KP_Delete
+
+"nautilus ~"
+	KP_Add
+
+"showuni"
+	Shift + KP_Add
+
+"nautilus /media/lucas/DATA"
+	Control + KP_Add
+
+"sudo pm-suspend"
+	Control + KP_Next
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
