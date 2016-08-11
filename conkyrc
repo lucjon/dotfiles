@@ -35,10 +35,10 @@ draw_graph_borders yes
 draw_outline no
 draw_shades no
 use_xft yes
-xftfont Workplace Sans:size=11:antialias=false
+xftfont TeX Gyre Heros:size=11:antialias=true
 gap_x 20
 gap_y 60
-minimum_size 250 5
+minimum_size 275 5
 net_avg_samples 2
 no_buffers yes
 out_to_console no
@@ -62,30 +62,30 @@ ${exec git config --global user.email}
 $battery_bar
 
 
-${color grey}Uptime:
-	$color $uptime
-${color grey}RAM Usage:
-	$color $mem/$memmax - $memperc% ${membar 4}
-${color grey}CPU Usage: ($freq_g GHz) $cpu%
-	${cpubar 4}
-Temperature:
-	$acpitemp °C
+${color}Uptime:
+	${color grey}$uptime
+${color}RAM Usage:
+	${color grey}$mem/$memmax - $memperc% ${membar 4}
+${color}CPU Usage:
+	${color grey}($freq_g GHz) $cpu%  ${cpubar 4}
+${color}Temperature:
+	${color grey}$acpitemp °C
 
-/		$color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-/media/win7		$color${fs_used /media/win7}/${fs_size /media/win7} ${fs_bar 6 /media/win7}
-/media/windows		$color${fs_used /media/windows}/${fs_size /media/windows} ${fs_bar 6 /media/windows}
+${color}/		${color grey}${fs_used /}/${fs_size /} ${fs_bar 6 /}
+${color}/media/lucas/DATA		${color grey}${fs_used /media/lucas/DATA}/${fs_size /media/lucas/DATA} ${fs_bar 6 /media/lucas/DATA}
+${color}/mnt/windows		${color grey}${fs_used /mnt/windows}/${fs_size /mnt/windows} ${fs_bar 6 /mnt/windows}
 
-eth0${color grey}
-	${addr eth0}
-	Tx:		$color ${totalup eth0} ${color grey}${goto 115}Rx:   	$color ${totaldown eth0}
-wlan0${color grey}
-	${addr wlan0}
-	${wireless_essid wlan0} (${wireless_bitrate wlan0})
-	${wireless_link_qual wlan0}% 		${wireless_link_bar wlan0}
-	Tx:		$color ${totalup wlan0} ${color grey}${goto 115}Rx:   	$color ${totaldown wlan0}
+${color}enp2s0${color grey}
+	${addr enp2s0}
+${color}	Tx:${color grey}          ${totalup enp2s0} ${color grey}${goto 145}${color}Rx:${color grey}   	${totaldown enp2s0}
+${color}wlp3s0${color grey}
+	${addr wlp3s0}
+	${wireless_essid wlp3s0} (${wireless_bitrate wlp3s0})
+	${wireless_link_qual wlp3s0}% 		           ${wireless_link_bar wlp3s0}
+${color}	Tx:${color grey}          ${totalup wlp3s0} ${goto 145}${color}Rx:${color grey}   	${totaldown wlp3s0}
 
-Name              ${goto 122}PID   ${goto 175}CPU%   ${goto 220}MEM%${color grey}
-${top name 1} ${goto 120}${top pid 1}${goto 170}${top cpu 1}${goto 215}${top mem 1}
-${top name 2} ${goto 120}${top pid 2}${goto 170}${top cpu 2}${goto 215}${top mem 2}
-${top name 3} ${goto 120}${top pid 3}${goto 170}${top cpu 3}${goto 215}${top mem 3}
-${top name 4} ${goto 120}${top pid 4}${goto 170}${top cpu 4}${goto 215}${top mem 4}
+${color}Name              ${goto 122}PID   ${goto 175}CPU%   ${goto 230}MEM%${color grey}
+${top name 1} ${goto 120}${top pid 1}${goto 170}${top cpu 1}${goto 225}${top mem 1}
+${top name 2} ${goto 120}${top pid 2}${goto 170}${top cpu 2}${goto 225}${top mem 2}
+${top name 3} ${goto 120}${top pid 3}${goto 170}${top cpu 3}${goto 225}${top mem 3}
+${top name 4} ${goto 120}${top pid 4}${goto 170}${top cpu 4}${goto 225}${top mem 4}

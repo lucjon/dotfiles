@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+WALLPAPER_DIRECTORY = '~/wallpaper'
+
+import operator, os, random, re
+from PIL import Image
+from functools import reduce
+from colormath.color_objects import LabColor, sRGBColor
+from colormath.color_conversions import convert_color
+
+WALLPAPER_DIRECTORY = os.path.expanduser(WALLPAPER_DIRECTORY)
+image_choice = random.choice(os.listdir(WALLPAPER_DIRECTORY))
+image_path = os.path.abspath(os.path.join(WALLPAPER_DIRECTORY, image_choice))
+os.system('feh --bg-center \'%s\'' % image_path)
+
+image = Image.open(image_path)
+top_row = reduce(operator.add, ([image.getpixel((x, y)) for x in range(0, image.width)] for y in range(3)))
+top_row = [convert_color(sRGBColor(*c), LabColor).get_value_tuple() for c in top_row]
+average_index = lambda A, i: sum(a[i] for a in A) / len(A)
+average_colour = tuple(average_index(top_row, i) for i in (0, 1, 2))
+average_colour = map(int, convert_color(LabColor(*average_colour), sRGBColor).get_value_tuple())
+as_hex = '#{:02x}{:02x}{:02x}'.format(*average_colour)
+
+#choices = [(random.randrange(0, image.width), random.randrange(0, image.height)) for p in range(2048)]
+#is_dark = sum(1 for p in [convert_color(sRGBColor(*image.getpixel((x, y))), LabColor).lab_l for (x, y) in choices] if p >= 50000) < (image.width / 2 * image.height)
+#print(is_dark)
+
+print(as_hex)
+with open(os.path.expanduser('~/.i3/config')) as handle:
+    text = handle.read()
+
+text = re.sub('background #.*', 'background ' + as_hex, text)
+
+with open(os.path.expanduser('~/.i3/config'), 'w') as handle:
+    handle.write(text)
+
+os.system('i3-msg reload')

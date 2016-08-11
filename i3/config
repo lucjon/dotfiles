@@ -13,7 +13,7 @@ set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Workplace Sans 10
+font pango:TeX Gyre Heros 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -134,6 +134,9 @@ bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
+# auto-type password
+bindsym $mod+Shift+A exec keepass2 -auto-type-selected
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -169,20 +172,23 @@ bar {
         status_command i3status
 		position top
 		modifier Mod4
-		font pango:Workplace Sans 9
+		font pango:TeX Gyre Heros 9
 
 		colors {
-                background #000011
+                background #160b1e
 		}
 }
 
 exec /usr/bin/gnome-settings-daemon
 exec_always xsetroot -mod 0 0 -fg '#001'
+exec_always /home/lucas/.dotfiles_dir/next_background
 exec xrdb /home/lucas/.dotfiles_dir/Xdefaults
 exec dropbox start
 exec xterm -e vim /home/lucas/Dropbox/Notes.org
 exec nm-applet
-exec conky
+#exec conky
+exec conky -c /home/lucas/.dotfiles_dir/conky-middle
+exec conky -c /home/lucas/.dotfiles_dir/conky-todo
 exec_always xbindkeys
 exec_always synclient VertEdgeScroll=1
 exec_always xmodmap /home/lucas/.Xmodmap
