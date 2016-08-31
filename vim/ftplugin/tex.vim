@@ -59,3 +59,24 @@ nnoremap <silent> <buffer>  <CR>        :call Do_compile_latex()<CR>
 nnoremap <silent> <buffer>  <leader>C   :CompileLatex<CR>
 
 set inde=
+
+nmap <silent> <buffer> \b		:let b:in_latex_begin=1<CR>a\begin{
+nmap <silent> <buffer> \B		O<Esc>\b
+au InsertLeave <buffer>  call Do_latex_insertleave()
+
+function! Do_latex_insertleave()
+	if exists('b:in_latex_begin') && b:in_latex_begin
+		if matchstr(getline('.'), '\%' . col('.') . 'c.') == '{'
+			norm 7hD
+		else
+			norm a}
+			norm F\y$o
+			norm P$F\lct{end
+			" beware, there's a space at the end of the next line
+			" (deliberately)
+			norm O 
+			norm $x
+		endif
+		let b:in_latex_begin = 0
+	endif
+endfunction!
