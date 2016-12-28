@@ -53,9 +53,9 @@ update_ps1 () {
 		local clr="\[\e[39m\]"
 	fi
 
-	if git rev-parse --is-inside-work-tree &>/dev/null; then
+	if timeout 0.1 git rev-parse --is-inside-work-tree &>/dev/null; then
 		local gitclr=32
-		if [ $(git status --porcelain | grep -vE '^\?\?' | wc -l) -gt 0 ]; then
+		if [ $(timeout 0.1 git status --porcelain | grep -vE '^\?\?' | wc -l) -gt 0 ]; then
 			local gitclr=33
 		fi
 		local git=" \[\e[${gitclr}m\]$(git rev-parse --abbrev-ref HEAD)${clr}"
