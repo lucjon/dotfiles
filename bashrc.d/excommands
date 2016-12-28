@@ -18,6 +18,10 @@ function keepalias {
 	echo "alias $1=$CMD" >> ~/.dotfiles_dir/user-aliases
 }
 
+function bgq {
+	$@ &>/dev/null &
+}
+
 ### Aliases
 alias gpush="git push origin master"
 alias ..="cd ..; pwd"
@@ -37,5 +41,35 @@ export PATH="$PATH:$DEVKITPPC/bin:$HOME/bin:$HOME/.local/bin"
 export TERMINAL="gnome-terminal"
 export EDITOR=vim
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+
+### Prompt
+export PROMPT_COMMAND=update_ps1
+
+update_ps1 () {
+	if [ $? -ne 0 ]; then
+		local clr="\[\e[31m\]"
+	else
+		local clr="\[\e[39m\]"
+	fi
+
+	if git rev-parse --is-inside-work-tree &>/dev/null; then
+		local gitclr=32
+		if [ $(git status --porcelain | grep -vE '^\?\?' | wc -l) -gt 0 ]; then
+			local gitclr=33
+		fi
+		local git=" \[\e[${gitclr}m\]$(git rev-parse --abbrev-ref HEAD)${clr}"
+	fi
+
+	if [ -f Makefile ]; then
+		timeout 0.25 make -q &>/dev/null
+		local makeres=$?
+		if [ $makeres -ne 0 ] && [ $makeres -ne 124 ]; then
+			local make=' *'
+		fi
+	fi
+
+	export PS1="${clr}\[\e[1m\](\h)${git}${make} \w \$ \[\e[0m\]"
+}
 
 set -o vi
