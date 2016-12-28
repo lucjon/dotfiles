@@ -35,6 +35,7 @@ set cursorline									" Highlight current line
 set clipboard+=unnamed							" Yank to clipboard by default.
 set tildeop										" Convenient sometimes
 set ofu=syntaxcomplete#Complete					" Enable omni-completion
+set noequalalways								" Stop changing my split sizes...
 let g:ConqueTerm_Color = 1						" Enable terminal colour
 let g:tex_indent_brace = 0						" Turn off buggy LaTeX indentation
 let g:gruvbox_italic = 1						" Enable italics in color scheme
