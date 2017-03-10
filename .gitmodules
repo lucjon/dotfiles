@@ -58,3 +58,6 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "vim/bundle/VOoM"]
+	path = vim/bundle/VOoM
+	url = https://github.com/vim-voom/VOoM
