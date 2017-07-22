@@ -66,6 +66,7 @@ syn keyword gapOperator	and div in mod not or
 syn keyword gapFunction	function -> return local end Error 
 syn keyword gapConditional	if else elif then fi
 syn keyword gapRepeat		do od for while repeat until
+syn keyword gapLoopControl break continue
 syn keyword gapOtherKey         Info Unbind IsBound
 
 syn keyword gapBool         true false fail
@@ -77,25 +78,25 @@ syn match  gapSublist	"[}{]"
 "hilite
 " this is very much dependent on personal taste, must add gui case if you
 " use gvim
-hi gapString ctermfg=2 guifg=Green
-hi gapFunction  ctermfg=1 guifg=Red
-hi gapDeclare  cterm=bold ctermfg=4 guifg=DarkBlue
-hi gapMethsel  ctermfg=6 guifg=Cyan
-hi gapOtherKey  ctermfg=3 guifg=Yellow
-hi gapOperator cterm=bold ctermfg=8 guifg=DarkGray
-hi gapConditional cterm=bold ctermfg=9 guifg=DarkRed
-hi gapRepeat cterm=bold ctermfg=12 guifg=DarkGray
-hi gapComment  ctermfg=4 guifg=Blue
-hi gapTodo  ctermbg=2 ctermfg=0 guibg=Green guifg=Black
+hi def link gapString		String
+hi def link gapFunction Keyword
+hi def link gapDeclare Keyword
+hi def link gapMethsel Keyword
+hi def link gapOperator Operator
+hi def link gapConditional Conditional
+hi def link gapRepeat Repeat
+hi def link gapLoopControl Keyword
+hi def link gapComment Comment
+hi def link gapTodo Todo
 hi link gapTTodoComment  gapTodo 
 hi link gapTodoComment	gapComment
-hi gapNumber ctermfg=5 guifg=Magenta
-hi gapBool ctermfg=5 guifg=Magenta
-hi gapChar ctermfg=3 guifg=Yellow
-hi gapListDelimiter ctermfg=8 guifg=Gray
-hi gapParentheses ctermfg=12 guifg=Blue
-hi gapSublist ctermfg=14 guifg=LightBlue
-hi gapFunLine ctermbg=3 ctermfg=0 guibg=LightBlue guifg=Black
+hi def link gapNumber Number
+hi def link gapChar Character
+hi def link gapBool Boolean
+"hi gapListDelimiter ctermfg=8 guifg=Gray
+"hi gapParentheses ctermfg=12 guifg=Blue
+"hi gapSublist ctermfg=14 guifg=LightBlue
+"hi gapFunLine ctermbg=3 ctermfg=0 guibg=LightBlue guifg=Black
 
 syn sync maxlines=500
 
@@ -341,11 +342,5 @@ endfunction
 " I map it on F5
 map! <F5> <ESC>:call GAPlocal()<CR>i
 map <F5> :call GAPlocal()<CR>
-
-" very personal, for adding GAPDoc XML code in comments in GAP file
-vmap <ESC>}F14 y:n bla.xml<CR>Gp:.,$ s/##  \(.*\)/\1/<CR>i
-map <ESC>}F15 :n bla.xml<CR>:1,$ s/\(.*\)/##  \1/<CR>1GVGyu<C-^>gpi
-map! <ESC>}F15 <ESC>:n bla.xml<CR>:1,$ s/\(.*\)/##  \1/<CR>1GVGyu<C-^>gpi
-vmap <ESC>}F22 !(mv -f bla.xml bla1.xml; sed -e "s/^\#\#  \(.*\)/\1/" >bla.xml;xterm -e vim bla.xml ;sed -e "s/\(.*\)/\#\#  \1/" bla.xml)<CR><CR>
 
 " vim: ts=2
