@@ -205,3 +205,20 @@ endfunction
 augroup colour
 	au! VimEnter * call CheckColors()
 augroup end
+	
+" For GAP files
+augroup gap
+  " Remove all gap autocommands
+  au!
+  autocmd BufRead,BufNewFile *.g,*.gi,*.gd set filetype=gap comments=b:#
+augroup END
+
+
+
+" SyncTeX
+function! SyncTeXForward()
+     let execstr = "silent !okular --unique %:p:r.pdf\\#src:".line(".")."%:p &"
+     exec execstr
+endfunction
+command! -nargs=0 SyncTeX call SyncTeXForward()
+nmap <Leader>f :call SyncTeXForward()<CR>
