@@ -119,6 +119,12 @@ keystate_numlock = enable
 "sudo pm-suspend"
 	Control + KP_Next
 
+"sudo /home/lucas/bin/resetnet"
+	Control + F7
+
+"sleep 0.1 && xset dpms force off"
+	Control + F6
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
