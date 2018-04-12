@@ -61,3 +61,12 @@
 [submodule "vim/bundle/VOoM"]
 	path = vim/bundle/VOoM
 	url = https://github.com/vim-voom/VOoM
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/vim-indent-guides"]
+	path = vim/bundle/vim-indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "vim/bundle/vim-racket"]
+	path = vim/bundle/vim-racket
+	url = https://github.com/wlangstroth/vim-racket
